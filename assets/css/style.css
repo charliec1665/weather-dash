@@ -9,6 +9,10 @@ body {
     font-family: 'Alegreya Sans', sans-serif;
 }
 
+ul {
+    list-style: none;
+}
+
 /* Header Style */
 header {
     background-color: navy;

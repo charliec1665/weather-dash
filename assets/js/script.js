@@ -52,11 +52,9 @@ function searchWeather(cityWeather) {
             // local storage set item, stringify for button
             localStorage.setItem('weather', JSON.stringify(currentWeather));
 
-            var weatherHeaderEl = $('<h2 class="card-title m-3 p-2 text-center">').text('Current Weather: ' + data.name);
+            var weatherHeaderEl = $('#weather-header');
+            weatherHeaderEl.text('Current Weather: ' + data.name);
             weatherInfoEl.append(weatherHeaderEl);
-
-            // // call display function
-            // displayWeatherInfo(data);
             
             // fetch 5 day forecast
             return fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&appid=84b79da5e5d7c92085660485702f4ce8')
@@ -85,30 +83,48 @@ function searchWeather(cityWeather) {
         });
 }
 
+
+
 // function to display weather info
 function displayWeatherInfo(weatherData) {
-    // create current weather header and div using jquery
-    var weatherStatEl = $('<div class="card-text m-3 p-2">').text("");
+    var currentTempItem = $('#temp');
+    var currentHumItem = $('#humidity');
+    var currentWindItem = $('#wind');
+    var currentUviItem = $('#uvi');
 
-    weatherStatEl.append(weatherData.current.temp);
-    weatherStatEl.append(weatherData.current.humidity);
-    weatherStatEl.append(weatherData.current.wind_speed);
-    weatherStatEl.append(weatherData.current.uvi);
+    var currentTemp = Math.round(((weatherData.current.temp - 273.15) * 9/5 + 32) * 10) / 10;
+    currentTempItem.text('Temp: ' + currentTemp);
 
-    weatherInfoEl.append(weatherStatEl);
+    var currentHumidity = weatherData.current.humidity;
+    currentHumItem.text('Humidity: ' + currentHumidity);
 
-   for (i = 0; i < weatherData.length; i++) {
-        // create forecast daily card and div using jquery
-        var forecastHeaderEl = $('<h3 class="card-title m-3 p-2">').text(weatherData.daily.weatherData[i].dt);
-        forecastInfoEl.append(forecastHeaderEl);
-        var forecastStatEl = $('div class="card-text m-3 p-2">').text("");
-        // go through forecast days and append to forecastStatEl
-        forecastStatEl.append(weatherData.daily.weatherData[i].temp.day);
-        forecastStatEl.append(weatherData.daily.weatherData[i].wind_speed);
-        forecastStatEl.append(weatherData.daily.weatherData[i].humidity);
-   }
-    
-    // append weather data to parent container
-   forecastInfoEl.append(forecastStatEl);
+    var currentWind = weatherData.current.wind_speed;
+    currentWindItem.text('Wind: ' + currentWind);
+
+    var currentUvi = weatherData.current.uvi;
+    currentUviItem.text('UV Index: ' + currentUvi);
+   
+    var forecastHeaderEl = $('#f-header');
+    forecastHeaderEl.text('5-Day Forecast');
+    forecastInfoEl.append(forecastHeaderEl);
+
+   for (i = 0; i < 5; i++) {
+        // create forecast daily card
+        
+        var forecastTempItem = $('#temp');
+        var forecastHumItem = $('#humidity');
+        var forecastWindItem = $('#wind');
+
+        var forecastData = weatherData.daily[i];
+
+        var forecastTemp = Math.round(((forecastData.temp.day - 273.15) * 9/5 + 32) * 10) / 10;
+        forecastTempItem.text('Temp: ' + forecastTemp);
+
+        var forecastWind = forecastData.wind_speed;
+        forecastWindItem.text('Wind: ' + forecastWind);
+
+        var forecastHum = forecastData.humidity;
+        forecastHumItem.text('Humidity: ' + forecastHum);
+   }; 
 }
     
