@@ -40,6 +40,23 @@ header span {
     border: none;
 }
 
+/* Current Weather Style */
+
+/* #weather-info {
+    margin: 15px;
+    border: solid 1px rgb(254, 171, 108);
+} */
+
+/* Forecast Card Style */
+#f-card {
+    background-color: rgb(255, 109, 104);
+    background-image: linear-gradient(rgb(254, 171, 108), rgb(255, 109, 104));
+}
+
+#f-card h3 {
+    font-size: 20px;
+}
+
 /* Footer Style */
 footer {
     background-color: navy;

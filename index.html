@@ -27,39 +27,45 @@
             <span>- Dashboard</span>
         </h3>
     </header>
-    <div id="search-column" class="container">
-        <div class="row">
-            <div class="col-sm-3">
-                <form id="search-city">
-                    <div class="mb-3">
-                        <label for="city-name" class="form-label">Search for a City:</label>
-                        <input type="text" class="form-control" id="city-name">
+    <div class="d-flex flex-row">
+        <div id="search-column" class="container">
+            <div class="d-flex flex-column">
+                <div class="col-sm-3">
+                    <form id="search-city">
+                        <div class="mb-3">
+                            <label for="city-name" class="form-label">Search for a City:</label>
+                            <input type="text" class="form-control" id="city-name">
+                        </div>
+                        <div class="border-bottom">
+                            <button type="submit" class="btn btn-primary col-12 p-1 mb-3 border-bottom">Search</button>
+                        </div>
+                    </form>
+                    <div id="temp-btn-sp" class="mb-3"> <!-- Test Button Space -->
+                        <div id="city-btn">
+                        </div>
                     </div>
-                    <div class="border-bottom">
-                        <button type="submit" class="btn btn-primary col-12 p-1 mb-3 border-bottom">Search</button>
+                </div>
+            </div>
+        </div>
+        <div id="display-column" class="d-container">
+            <div class="d-flex flex-column">
+                <div class="col-sm-9 m-0">
+                    <div id="weather-info-container" class="col-12 card border-0">
+                        <div id="weather-info" class="card-body">
+                            <h2 id="weather-header" class="card-title m-3 p-2 text-center"></h2>
+                            <ul id="weather-list" class="card-text">
+                                <li id="temp" class="weather-list-item"></li>
+                                <li id="wind" class="weather-list-item"></li>
+                                <li id="humidity" class="weather-list-item"></li>
+                                <li id="uvi" class="weather-list-item"></li>
+                            </ul>
+                        </div> 
                     </div>
-                </form>
-                <div id="city-btn"></div>
-            </div>
-            <div id="weather-info-container" class="card border-0 col-sm-9">
-                <div id="weather-info" class="card-body">
-                    <h2 id="weather-header" class="card-title m-3 p-2 text-center"></h2>
-                    <ul id="weather-list" class="card-text">
-                        <li id="temp" class="weather-list-item"></li>
-                        <li id="wind" class="weather-list-item"></li>
-                        <li id="humidity" class="weather-list-item"></li>
-                        <li id="uvi" class="weather-list-item"></li>
-                    </ul>
-                </div> 
-            </div>
-            <div id="forecast-info-container" class="card border-0 col-sm-9">
-                <div id="forecast-info" class="card-body">
-                    <h2 id="f-header" class="card-title m-3 p-2"></h2>
-                    <ul id="forecast-list" class="card-text">
-                        <li id="f-temp" class="weather-list-item"></li>
-                        <li id="f-wind" class="weather-list-item"></li>
-                        <li id="f-humidity" class="weather-list-item"></li>
-                    </ul>
+                </div>
+                <div class="col-sm-9 m-0">
+                    <div id="forecast-info-container" class="">
+                        <div id="info-card-container" class="d-flex flex-row justify-content-around"></div>
+                    </div>
                 </div>
             </div>
         </div>
