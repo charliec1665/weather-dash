@@ -54,7 +54,7 @@ function searchWeather(cityWeather) {
 
             var weatherHeaderEl = $('#weather-header');
             weatherHeaderEl.text('Current Weather: ' + data.name);
-            weatherInfoEl.append(weatherHeaderEl);
+            weatherInfoEl.prepend(weatherHeaderEl);
             
             // fetch 5 day forecast
             return fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&appid=84b79da5e5d7c92085660485702f4ce8')
