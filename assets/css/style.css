@@ -1,0 +1,70 @@
+/* All Over Style */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Alegreya Sans', sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Header Style */
+header {
+    background-color: navy;
+    background-image: linear-gradient(rgb(253, 143, 58), rgb(249, 61, 102), rgb(202, 37, 235));
+}
+
+header h3 {
+    padding-top: 9px;
+    font-family: 'Acme';
+}
+
+header span {
+    font-family: 'Inspiration';
+}
+
+/* Form Style */
+.form-label {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+#search-column button {
+    background-color: navy;
+    background-image: linear-gradient(rgb(249, 61, 102), rgb(253, 143, 58));
+    border: none;
+}
+
+/* Current Weather Style */
+
+/* #weather-info {
+    margin: 15px;
+    border: solid 1px rgb(254, 171, 108);
+} */
+
+/* Forecast Card Style */
+#f-card {
+    background-color: rgb(255, 109, 104);
+    background-image: linear-gradient(rgb(254, 171, 108), rgb(255, 109, 104));
+}
+
+#f-card h3 {
+    font-size: 20px;
+}
+
+/* Footer Style */
+footer {
+    background-color: navy;
+    background-image: linear-gradient(rgb(249, 61, 102), rgb(253, 143, 58));
+}
+
+footer p {
+    text-align: right;
+    padding: 5px 10px;
+}
+
