@@ -134,10 +134,15 @@ function displayWeatherInfo(weatherData) {
 
     weatherInfoEl.css({"margin" : "15px", "border" : "solid 1px rgb(254, 171, 108)"});
 
+    var currentIcon = $('#icon');
     var currentTempItem = $('#temp');
     var currentHumItem = $('#humidity');
     var currentWindItem = $('#wind');
     var currentUviItem = $('#uvi');
+
+    // grab icon
+    var icon =  $('<img class="p-1">').attr("src", "http://openweathermap.org/img/wn/" + weatherData.current.weather[0].icon + "@2x.png");
+    currentIcon.append(icon);
 
     var currentTemp = Math.round(((weatherData.current.temp - 273.15) * 9/5 + 32) * 10) / 10;
     currentTempItem.text('Temp: ' + currentTemp + 'F');
@@ -165,27 +170,27 @@ function displayWeatherInfo(weatherData) {
         var forecastTimeStamp = forecastData.dt;
         var forecastDate = timeConverter(forecastTimeStamp);
         // var forecastDateFormat = moment(forecastDate.val("")).format('DD/MM/YYYY');
-        var forecastTitle = $('<h3 class="m-3 text-light">').text(forecastDate);
+        var forecastTitle = $('<h3 class="m-3 text-light text-center">').text(forecastDate);
         // create card text with pulled info by appending li to ul
         var forecastText = $('<ul class="m-3 p-1 text-light">');
 
         // grab icon
-        var forecastIcon =  $('<img class="p-1">').attr("src", "http://openweathermap.org/img/wn/" + forecastData.weather[0].icon + "@2x.png");
+        var forecastIcon =  $('<img class="p-1 text-center">').attr("src", "http://openweathermap.org/img/wn/" + forecastData.weather[0].icon + "@2x.png");
         forecastText.append(forecastIcon);
 
         // grab and create temp li
         var forecastTemp = Math.round(((forecastData.temp.day - 273.15) * 9/5 + 32) * 10) / 10;
-        var forecastTempItem = $('<li class="p-1">').text('Temp: ' + forecastTemp);
+        var forecastTempItem = $('<li class="p-1">').text('Temp: ' + forecastTemp + 'F');
         forecastText.append(forecastTempItem);
 
         // grab and create wind li
         var forecastWind = forecastData.wind_speed;
-        var forecastWindItem = $('<li class="p-1">').text('Wind: ' + forecastWind);
+        var forecastWindItem = $('<li class="p-1">').text('Wind: ' + forecastWind + 'MPH');
         forecastText.append(forecastWindItem);
 
         // grab and create humidity li
         var forecastHum = forecastData.humidity;
-        var forecastHumItem = $('<li class="p-1">').text('Humidity: ' + forecastHum);
+        var forecastHumItem = $('<li class="p-1">').text('Humidity: ' + forecastHum + '%');
         forecastText.append(forecastHumItem);
 
         // append card divs to forecast container
