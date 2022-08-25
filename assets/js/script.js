@@ -6,44 +6,21 @@ var searchForm = $('#search-city');
 var cityInput = $('#city-name');
 var cityButtonEl = $('city-btn');
 
-// search form event listener
-searchForm.submit(function(event) {
-    event.preventDefault();
-
-    var city = cityInput.val();
-    if (city) {
-        searchWeather(city);
-    }
-
-    cityInput.val("");
-});
-
-// city button event listener
-cityButtonEl.submit(function(event) {
-    event.preventDefault();
-
-    var city = cityInput.val();
-    if (city) {
-        searchWeather(city);
-    }
-
-    cityInput.val("");
-})
-
-// get current info from local storage
+// get current info from local storage after weather search
 var currentCityWeather = JSON.parse(localStorage.getItem('weather'));
 // forEach call display
 currentCityWeather.forEach(function(weatherObject) {
     displayWeatherInfo(weatherObject.data);
 })
 
-// get fiveday info from local storage
+// get fiveday info from local storage after weather search
 var dailyForecastWeather = JSON.parse(localStorage.getItem('fiveday'));
 // forEach call display
 dailyForecastWeather.forEach(function(weatherObject) {
     displayWeatherInfo(weatherObject.data);
 })
 
+// convert unix timestamp to a readable formatted date
 function timeConverter(unixTimestamp) {
     var stamp = new Date(unixTimestamp * 1000);
     var month = stamp.getMonth();
@@ -199,4 +176,28 @@ function displayWeatherInfo(weatherData) {
         forecastCard.append(forecastText);
    }; 
 }
+
+// search form event listener
+searchForm.submit(function(event) {
+    event.preventDefault();
+
+    var city = cityInput.val();
+    if (city) {
+        searchWeather(city);
+    }
+
+    cityInput.val("");
+});
+
+// city button event listener
+cityButtonEl.submit(function(event) {
+    event.preventDefault();
+
+    var city = cityInput.val();
+    if (city) {
+        searchWeather(city);
+    }
+
+    cityInput.val("");
+})
     
