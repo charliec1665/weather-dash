@@ -13,15 +13,15 @@ Currently, the functionality of the UV Index color guide and the functionality o
 Link to Deploy application: https://charliec1665.github.io/weather-dash/
 
 Users enter a city name into the search.
-< /br>
-< /br>
+</br>
+</br>
 ![the home page of Weather Wherever with a city name being typed into the search input](assets/images/screenshot1.png)
-< /br>
-< /br>
-< /br>
+</br>
+</br>
+</br>
 Users can see current weather conditions and the five day forecast.
-< /br>
-< /br>
+</br>
+</br>
 ![Weather Wherever results of current weather and forecast](assets/images/screenshot2.png)
 
 ## Credits
