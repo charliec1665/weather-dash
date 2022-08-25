@@ -6,20 +6,6 @@ var searchForm = $('#search-city');
 var cityInput = $('#city-name');
 var cityButtonEl = $('city-btn');
 
-// get current info from local storage
-var currentCityWeather = JSON.parse(localStorage.getItem('weather'));
-// forEach call display
-currentCityWeather.forEach(function(weatherObject) {
-    displayWeatherInfo(weatherObject.data);
-})
-
-// get fiveday info from local storage
-var dailyForecastWeather = JSON.parse(localStorage.getItem('fiveday'));
-// forEach call display
-dailyForecastWeather.forEach(function(weatherObject) {
-    displayWeatherInfo(weatherObject.data);
-})
-
 // search form event listener
 searchForm.submit(function(event) {
     event.preventDefault();
@@ -42,6 +28,20 @@ cityButtonEl.submit(function(event) {
     }
 
     cityInput.val("");
+})
+
+// get current info from local storage
+var currentCityWeather = JSON.parse(localStorage.getItem('weather'));
+// forEach call display
+currentCityWeather.forEach(function(weatherObject) {
+    displayWeatherInfo(weatherObject.data);
+})
+
+// get fiveday info from local storage
+var dailyForecastWeather = JSON.parse(localStorage.getItem('fiveday'));
+// forEach call display
+dailyForecastWeather.forEach(function(weatherObject) {
+    displayWeatherInfo(weatherObject.data);
 })
 
 function timeConverter(unixTimestamp) {
