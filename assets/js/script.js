@@ -6,23 +6,23 @@ var searchForm = $('#search-city');
 var cityInput = $('#city-name');
 var cityButtonEl = $('city-btn');
 
-// get current info from local storage after weather search
-var currentCityWeather = JSON.parse(localStorage.getItem('weather'));
-// forEach call display
-if (currentCityWeather) {
-    currentCityWeather.forEach(function(weatherObject) {
-        displayWeatherInfo(weatherObject.data);
-    })
-}
+// // get current info from local storage after weather search
+// var currentCityWeather = JSON.parse(localStorage.getItem('weather'));
+// // forEach call display
+// if (currentCityWeather) {
+//     currentCityWeather.forEach(function(weatherObject) {
+//         displayWeatherInfo(weatherObject.data);
+//     })
+// }
 
-// get fiveday info from local storage after weather search
-var dailyForecastWeather = JSON.parse(localStorage.getItem('fiveday'));
-// forEach call display
-if (dailyForecastWeather) {
-    dailyForecastWeather.forEach(function(weatherObject) {
-        displayWeatherInfo(weatherObject.data);
-    })
-}
+// // get fiveday info from local storage after weather search
+// var dailyForecastWeather = JSON.parse(localStorage.getItem('fiveday'));
+// // forEach call display
+// if (dailyForecastWeather) {
+//     dailyForecastWeather.forEach(function(weatherObject) {
+//         displayWeatherInfo(weatherObject.data);
+//     })
+// }
 
 
 // convert unix timestamp to a readable formatted date
@@ -96,8 +96,35 @@ function searchWeather(cityWeather) {
                 console.log(data);
                 // save 5 day forecast to local storage
                 var fivedayForecast = JSON.parse(localStorage.getItem('fiveday'));
+
+                // if there is no fiveday stored then set to empty array
+                if (!fivedayForecast)
+                fivedayForecast = [];
+
+                // if the fiveday for the searched city isnt already in storage loop through and grab
+                var alreadySaved = false;
+                console.log(fivedayForecast);
+                fivedayForecast.forEach(function (city) {
+                    var location = city.lat;
+                    console.log(location);
+                    // when i shorted below to cityWeather.coord IT WORKS...but cant return the correct value for the function to work
+                    if (location === cityWeather.coord) {
+                        alreadySaved = true;
+                    }
+                });
+
+                if (!alreadySaved) {
+                    console.log(fivedayForecast);
+                    var location = data.lat;
+                    // if we didnt find a match above add to city array
+                    fivedayForecast.push({
+                        location: location,
+                        data: data
+                    });
+                    console.log(fivedayForecast);
+                }
                 
-                // local storage set item, stringify for button
+                // local storage set item, stringify
                 localStorage.setItem('fiveday', JSON.stringify(fivedayForecast));
                 // call display function
                 displayWeatherInfo(data);
@@ -112,6 +139,8 @@ function searchWeather(cityWeather) {
 
 // function to display weather info
 function displayWeatherInfo(weatherData) {
+
+    console.log(weatherData);
 
     weatherInfoEl.css({"margin" : "15px", "border" : "solid 1px rgb(254, 171, 108)"});
 
