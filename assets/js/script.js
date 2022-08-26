@@ -104,8 +104,6 @@ function searchWeather(cityWeather) {
         });
 }
 
-
-
 // function to display weather info
 function displayWeatherInfo(weatherData) {
 
