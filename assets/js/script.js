@@ -9,16 +9,21 @@ var cityButtonEl = $('city-btn');
 // get current info from local storage after weather search
 var currentCityWeather = JSON.parse(localStorage.getItem('weather'));
 // forEach call display
-currentCityWeather.forEach(function(weatherObject) {
-    displayWeatherInfo(weatherObject.data);
-})
+if (currentCityWeather) {
+    currentCityWeather.forEach(function(weatherObject) {
+        displayWeatherInfo(weatherObject.data);
+    })
+}
 
 // get fiveday info from local storage after weather search
 var dailyForecastWeather = JSON.parse(localStorage.getItem('fiveday'));
 // forEach call display
-dailyForecastWeather.forEach(function(weatherObject) {
-    displayWeatherInfo(weatherObject.data);
-})
+if (dailyForecastWeather) {
+    dailyForecastWeather.forEach(function(weatherObject) {
+        displayWeatherInfo(weatherObject.data);
+    })
+}
+
 
 // convert unix timestamp to a readable formatted date
 function timeConverter(unixTimestamp) {
@@ -64,8 +69,9 @@ function searchWeather(cityWeather) {
             });
 
             if (!alreadySaved) {
+                console.log(currentWeather);
                 // if we didnt find a match above add to city array
-                currentCityWeather.push({
+                currentWeather.push({
                     name: cityWeather,
                     data: data
                 });
